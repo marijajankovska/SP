@@ -1,0 +1,53 @@
+/*Да се напише програма во која од дадена датотека со име "input.txt" за секој ред ќе се отпечати 
+бројот на цифри во тој ред, знакот :, па самите цифри подредени според ASCII кодот во растечки редослед. Редовите во датотеката не се подолги од 100 знаци.*/
+#include <stdio.h>
+#include <string.h>
+void wtf() {
+    FILE *f = fopen("input.txt", "w");
+    char c;
+    while((c = getchar()) != EOF) {
+        fputc(c, f);
+    }
+    fclose(f);
+}
+
+int main() {
+     wtf();
+    FILE *dat = fopen("input.txt", "r");
+    char red[100];
+    int counter = 0, cifri[100],i,n,j;
+    while(fgets(red, 1000, dat) != NULL)
+    {
+        counter = 0;
+        n =0;
+        for(i = 0; i < strlen(red); i++)
+        {
+            if(red[i] >= '0' && red[i] <= '9')
+            {
+                counter++;
+                cifri[n] = red[i] - '0';
+                n++;
+            }
+        }
+         for(i = 0; i <n; i++)
+        {
+            for( j = i + 1; j < n; j++)
+            {
+                if(cifri[i] > cifri[j])
+                {
+                    int temp = cifri[i];
+                    cifri[i] = cifri[j];
+                    cifri[j] = temp;
+                }
+            }
+        }
+        printf("%d:",counter);
+        for( i = 0; i < n; i++)
+        {
+            printf("%d",cifri[i]);
+        }
+        printf("\n");
+    }
+    fclose(dat);
+    return 0;
+}
