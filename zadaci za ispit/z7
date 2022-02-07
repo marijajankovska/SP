@@ -1,0 +1,40 @@
+/*Од тастатура се внесуваат димензиите на една матрица (m, n <= 100), а потоа и елементите од матрицата. Да се генерира низа (со најмногу m) така што секој елемент од низата се добива со наоѓање на елементот во секоја редица од матрицата што е најоддалечен од аритметичката средина во рамки на таа редица. Ако постојат повеќе елементи што
+се најоддалечени од аритметичката средина, тогаш се зема предвид првиот. Редоследот на запишување на елементите во низата одговара на редоследот на редиците.*/
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+    int matrix[100][100],m,n,i,j,zbir = 0,max_el;
+    float prosek[100],max_razlika;
+    scanf("%d", &m); scanf("%d", &n);
+    for (i =0; i < m; i++)
+   {   zbir = 0;
+       for (j = 0; j < n; j++)
+       {
+           scanf("%d", &matrix[i][j]);
+           zbir += matrix[i][j];
+       }
+       prosek[i] = (float)zbir/n;
+   }
+
+    for (i = 0; i < m; i++)
+    {   max_razlika = 0; max_el = 0;
+        for(j = 0; j < n; j++)
+        {
+            if(j == 0)
+            {
+                max_razlika = fabs(prosek[i] - matrix[i][j]);
+                max_el = 0;
+            }
+          if(max_razlika < fabs(prosek[i] - matrix[i][j]))
+          {
+                max_razlika = fabs(prosek[i] - matrix[i][j]);
+                max_el = j;
+          }
+        }
+        printf("%d ", matrix[i][max_el]);
+        
+    }
+
+    return 0;
+}
