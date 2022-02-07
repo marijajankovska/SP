@@ -1,0 +1,56 @@
+/*Во дадена датотека dat.txt да се најде најдолгиот ред во кој има барем 2 цифри. На стандарден излез да се испечатат знаците од 
+најдолгиот ред кои се наоѓаат помеѓу првата и последната цифра (заедно со тие 2 цифри) во истиот редослед.
+Доколку има повеќе такви редови се печати последниот. Се претпоставува дека ниту еден ред на датотеката не е подолг од 100 знаци. */
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+// ne menuvaj ovde
+void wtf() {
+    FILE *f = fopen("dat.txt", "w");
+    char c;
+    while((c = getchar()) != EOF) {
+        fputc(c, f);
+    }
+    fclose(f);
+}
+
+int main() {
+    wtf();
+	FILE *f = fopen("dat.txt", "r");
+	char line[100], max[100];
+	int i,counter = 0,start = 100, end = 0,max_start = 0,max_end = 0, max_line = 0;
+	while(fgets(line,100,f))
+    {   counter = 0,start = 100, end = 0;
+        for(i = 0; line[i] != '\n' &&  line[i] != '\0';i++)
+        {
+            if(line[i] >= '0' && line[i] <= '9')
+            {
+                if(i < start)
+                {
+                    start = i;
+                }
+                if(i > end)
+                {
+                    end = i;
+                }
+                counter ++;
+            }
+
+        }
+        if(counter >=2 && i >= max_line)
+        {
+               max_start = start;
+               max_end = end;
+               max_line = i ;
+               strcpy(max,line);
+        }
+       
+    } 
+    for (i = max_start; i <=max_end; i++)
+            {
+                printf("%c", max[i]);
+            }
+  fclose(f);
+  return 0;
+
+}
