@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <string.h>
+int main() {
+       char niza[100],max[100];
+       int n,flag_s = 0,flag = 0;
+       scanf("%d", &n);
+       char trash = getchar();
+        for(int i  =0 ; i < n ; i++)
+    {
+        gets(niza);
+       for(int j = 0; j <= strlen(niza)/2; j++)
+       {
+              //dali e palindrom
+              if(niza[j] == niza[strlen(niza)-1-j])
+              {
+                  flag = 1;
+              }
+              else
+              {
+                  flag = 0;
+                  break;
+              }
+              //dali ima specijalen znak
+              if(!isdigit(niza[j]) && !isalpha(niza[j]))
+              {
+                  flag_s = 1;
+              }
+        }
+        if(flag == 1 && flag_s == 1)
+        {
+           if(strlen(niza)>strlen(max))
+           {
+               strcpy(max,niza);
+           }
+        }
+    }
+    puts(max);
+    return 0;
+}
