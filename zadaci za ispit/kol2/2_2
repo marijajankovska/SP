@@ -1,0 +1,80 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int m, n, k, l,j,i,counter = 0, desna[100][100] = {0},leva[100][100] = {0},c[100][100] = {0}, a[100][100];
+    float M[100][100];
+    scanf("%d", &m);    scanf("%d", &n);
+    for (i = 0; i < m; i++)
+    {
+        for (j = 0; j < n; j++)
+        {
+            scanf("%d", &a[i][j]);
+        }
+
+    }
+    //desna dijagonala
+     for (i = 0; i < m; i++)
+    {
+        for (j = 0; j < n; j++)
+        {     k = i; l = j;
+              while (k < m && l < n)
+            {
+                desna[i][j] += a[k+1][l+1];
+                c[i][j]+=1;
+                k++; l++;
+            }
+        }
+    }
+    for (i = 0; i < m;i++)
+    {
+        for (j = 0; j < n; j++)
+        {
+            c[i][j] -= 1;
+        }
+    }
+
+    //leva dijagonala
+         for (i = 0; i < m; i++)
+    {
+        for (j = 0; j < n; j++)
+        {     k = i; l = j;
+              while (k < m && l >= 0)
+            {
+                if(j == 0)
+                {
+                    c[i][j] += 1;
+                    break;
+                }
+                leva[i][j] += a[k+1][l-1];
+                c[i][j] +=1;
+                k++; l--;;
+            }
+        }
+    }
+    for (i = 0; i < m;i++)
+    {
+        for (j = 0; j < n; j++)
+        {
+            c[i][j] -= 1;
+        }
+    }
+    for (i = 0; i < m; i++)
+    {
+        for(j = 0; j < n; j++)
+        {
+            M[i][j] = (float)(leva[i][j]+desna[i][j])/(c[i][j]);
+        }
+    }
+    for (i = 0; i < m; i++)
+    {
+        for (j = 0; j < n; j++)
+        {
+            printf("%.2f ", M[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
