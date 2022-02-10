@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <string.h>
+int main() {
+    int matrix[100][100],i,j,k,l,m,n,s1 = 0,s2 = 0;
+    scanf("%d", &m);    scanf("%d", &n);
+    for(i = 0; i < m; i++)
+    {
+        for(j = 0; j < n; j++)
+        {
+            scanf("%d",&matrix[i][j]);
+        }
+    }
+    for (i = 0; i < m; i++)
+    {
+        for(j = 0; j < n; j++)
+        {
+            s1 = 0;    s2 = 0;
+            //s1
+              for(l = j; l < n; l++)
+                {
+                    s1 += matrix[i][l];
+                }
+            //s2
+            for(k = i; k < m; k++)
+            {
+                s2 += matrix[k][j];
+            }
+            if(s1 > s2)
+            {
+                matrix[i][j] = s1;
+            }
+            else
+                matrix[i][j] = s2;
+        }
+    }
+    for (i = 0; i < m; i++)
+    {
+        for(j = 0; j < n; j++)
+        {
+            printf("%d ",matrix[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
