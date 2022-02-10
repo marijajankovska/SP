@@ -1,0 +1,46 @@
+#include <stdio.h>
+int razlicni_broevi(int x, int broj)
+{
+    int fix, counter = 0;
+    while(fix != 0)
+    {
+        int tmp =  broj;
+        fix = broj%10;
+        while(tmp != 0)
+     {
+        if((tmp%100)/10 != fix)     //1234
+        {
+            counter++;
+        }
+     }
+     broj /= 10;
+    }
+    if(counter == x )
+        return 1;
+    else
+        return 0;
+}
+int main()
+{
+    int x,n,array[100];
+    scanf("%d", &x);
+    scanf("%d", &n);
+    for(int i = 0; i < n; i++)
+    {
+        scanf("%d", &array[i]);
+    }
+     for(int i = 0; i < n; i++)
+    {
+        if(razlicni_broevi(x,array[i]) == 1)
+        {
+            printf("%d\n",array[i]);
+        }
+    }
+    /* for(int i = 0; i < n; i++)
+    {
+        printf("%d", array[i]);
+
+    }*/
+
+    return 0;
+}
