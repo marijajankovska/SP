@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <string.h>
+int najgolem_od_niza(int array[],int n)
+{
+    int max = 0;
+    for (int i = 0; i < n; i++ )
+    {
+        if(array[i] > max)
+        {
+            max  = array[i];
+        }
+    }
+    return max;
+}
+int main() {
+    int i,niza[100],n ,fix,prethodnik,sledbenik;
+    scanf("%d",&n);
+    for (i = 0; i < n; i++)
+    {
+        scanf("%d",&niza[i]);
+    }
+    int max[100],j = 0,counter = 0;
+    for(i = 1; i < n-1; i++)
+    {
+        prethodnik = i - 1;     fix = i;    sledbenik = i + 1;
+        if(niza[fix]>niza[prethodnik] && niza[fix]>niza[sledbenik])
+        {
+            max[j] = niza[i];
+            j++;    counter++;
+        }
+    }
+    printf("%d ",najgolem_od_niza(max,counter));
+    return 0;
+}
